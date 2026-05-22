@@ -1,4 +1,24 @@
-# Runway Aleph API SDK for RunAPI
+<p align="center">
+  <a href="https://runapi.ai"><img src="https://runapi.ai/icon.svg" height="56" alt="RunAPI"></a>
+</p>
+
+<h3 align="center">
+  <a href="https://github.com/runapi-ai/runway-aleph-sdk">Runway Aleph API SDK for RunAPI</a>
+</h3>
+
+<p align="center">
+  Runway Aleph API SDKs for JavaScript, Ruby, and Go on RunAPI.
+</p>
+
+<div align="center">
+
+[![npm](https://img.shields.io/npm/v/@runapi.ai/runway-aleph)](https://www.npmjs.com/package/@runapi.ai/runway-aleph)
+[![RubyGems](https://img.shields.io/gem/v/runapi-runway-aleph)](https://rubygems.org/gems/runapi-runway-aleph)
+[![Go Reference](https://pkg.go.dev/badge/github.com/runapi-ai/runway-aleph-sdk/go.svg)](https://pkg.go.dev/github.com/runapi-ai/runway-aleph-sdk/go)
+[![License](https://img.shields.io/github/license/runapi-ai/runway-aleph-sdk)](https://github.com/runapi-ai/runway-aleph-sdk/blob/main/LICENSE)
+
+</div>
+<br/>
 
 The runway aleph api SDK packages JavaScript, Ruby, and Go clients for Runway Aleph on RunAPI. Use this runway aleph api SDK for video-to-video transformation workflows that need typed installs, JSON request bodies, task polling, and consistent RunAPI errors across services.
 
@@ -8,7 +28,7 @@ Runway Aleph belongs to the Runway catalog on RunAPI. The public model page is h
 
 ```bash
 npm install @runapi.ai/runway-aleph
-gem install runapi-runway_aleph
+gem install runapi-runway-aleph
 go get github.com/runapi-ai/runway-aleph-sdk/go@latest
 ```
 
@@ -40,7 +60,7 @@ For short scripts, use `run` with the same JSON body to create the task and wait
 ## Repository layout
 
 - `js/` publishes `@runapi.ai/runway-aleph`.
-- `ruby/` publishes `runapi-runway_aleph` when RubyGems publishing resumes.
+- `ruby/` publishes `runapi-runway-aleph` when RubyGems publishing resumes.
 - `go/` publishes `github.com/runapi-ai/runway-aleph-sdk/go` and depends on `github.com/runapi-ai/core-sdk/go`.
 
 ## Public links
@@ -56,19 +76,19 @@ For short scripts, use `run` with the same JSON body to create the task and wait
 ## Pricing and variants
 
 Use the most specific runway aleph api variant page for pricing, rate limits, and commercial usage:
-- [Runway Aleph](https://runapi.ai/models/runway-aleph/runway-aleph)
+- [Runway Aleph](https://runapi.ai/models/runway-aleph)
 
-Default pricing link for the runway aleph api SDK: https://runapi.ai/models/runway-aleph/runway-aleph
+Default pricing link for the runway aleph api SDK: https://runapi.ai/models/runway-aleph
 
 ## FAQ
 
 ### Which package should I install for runway aleph api work?
 
-Install the model package for your language: `@runapi.ai/runway-aleph`, `runapi-runway_aleph`, or `github.com/runapi-ai/runway-aleph-sdk/go`. Install core SDK packages only when you are building shared SDK infrastructure.
+Install the model package for your language: `@runapi.ai/runway-aleph`, `runapi-runway-aleph`, or `github.com/runapi-ai/runway-aleph-sdk/go`. Install core SDK packages only when you are building shared SDK infrastructure.
 
 ### Where should public links point?
 
-Primary runway aleph api links point to https://runapi.ai/models/runway-aleph. Pricing and usage-policy links point to variant pages such as https://runapi.ai/models/runway-aleph/runway-aleph. Provider comparisons point to https://runapi.ai/providers/runway, and broad browsing points to https://runapi.ai/models.
+Primary runway aleph api links point to https://runapi.ai/models/runway-aleph. Pricing and usage-policy links point to variant pages such as https://runapi.ai/models/runway-aleph. Provider comparisons point to https://runapi.ai/providers/runway, and broad browsing points to https://runapi.ai/models.
 
 ## License
 
