@@ -24,37 +24,45 @@ func (s *stubHTTPClient) Request(_ context.Context, method, path string, opts *c
 	return s.response, nil
 }
 
-func TestVideoToVideoCreate(t *testing.T) {
+func TestEditVideoCreate(t *testing.T) {
 	stub := &stubHTTPClient{response: json.RawMessage(`{"id":"task_aleph_123","status":"processing"}`)}
 	client := NewClientWithHTTP(stub)
-	uploadCN := false
-	resp, err := client.VideoToVideo.Create(context.Background(), VideoToVideoParams{Prompt: "regrade to dusk", VideoURL: "https://example.com/source.mp4", UploadCN: &uploadCN})
+	resp, err := client.EditVideo.Create(context.Background(), EditVideoParams{Prompt: "regrade to dusk", SourceVideoURL: "https://cdn.runapi.ai/public/samples/source.mp4"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	if stub.method != "POST" || stub.path != videoToVideoPath {
+	if stub.method != "POST" || stub.path != editVideoPath {
 		t.Fatalf("unexpected request: %s %s", stub.method, stub.path)
 	}
 	body := stub.body.(map[string]any)
-	if body["video_url"] != "https://example.com/source.mp4" || body["upload_cn"] != false {
+	if body["source_video_url"] != "https://cdn.runapi.ai/public/samples/source.mp4" {
 		t.Fatalf("unexpected body: %v", body)
+	}
+	if _, ok := body["upload_cn"]; ok {
+		t.Fatalf("expected request body to omit upload_cn key: %v", body)
+	}
+	if _, ok := body["video_url"]; ok {
+		t.Fatalf("expected request body to omit provider video_url key: %v", body)
 	}
 	if resp.ID != "task_aleph_123" {
 		t.Fatalf("unexpected id: %v", resp.ID)
 	}
 }
 
-func TestVideoToVideoGet(t *testing.T) {
-	stub := &stubHTTPClient{response: json.RawMessage(`{"id":"task_aleph_456","status":"completed","videos":[{"url":"https://file.runapi.ai/video.mp4"}]}`)}
+func TestEditVideoGet(t *testing.T) {
+	stub := &stubHTTPClient{response: json.RawMessage(`{"id":"task_aleph_456","status":"completed","videos":[{"url":"https://file.runapi.ai/video.mp4"}],"images":[{"url":"https://file.runapi.ai/cover.png"}]}`)}
 	client := NewClientWithHTTP(stub)
-	resp, err := client.VideoToVideo.Get(context.Background(), "task_aleph_456")
+	resp, err := client.EditVideo.Get(context.Background(), "task_aleph_456")
 	if err != nil {
 		t.Fatal(err)
 	}
-	if stub.method != "GET" || stub.path != videoToVideoPath+"/task_aleph_456" {
+	if stub.method != "GET" || stub.path != editVideoPath+"/task_aleph_456" {
 		t.Fatalf("unexpected request: %s %s", stub.method, stub.path)
 	}
 	if len(resp.Videos) != 1 || resp.Videos[0].URL != "https://file.runapi.ai/video.mp4" {
 		t.Fatalf("unexpected response: %v", resp.Videos)
+	}
+	if len(resp.Images) != 1 || resp.Images[0].URL != "https://file.runapi.ai/cover.png" {
+		t.Fatalf("unexpected images: %v", resp.Images)
 	}
 }

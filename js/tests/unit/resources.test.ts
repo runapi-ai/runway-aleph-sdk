@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { HttpClient } from '@runapi.ai/core';
-import { VideoToVideo } from '../../src/resources/video-to-video';
+import { EditVideo } from '../../src/resources/edit-video';
 
 describe('Runway Aleph resources', () => {
   const mockHttp: HttpClient = { request: vi.fn() };
@@ -9,24 +9,30 @@ describe('Runway Aleph resources', () => {
     vi.clearAllMocks();
   });
 
-  it('creates video-to-video task with video_url', async () => {
+  it('creates edit-video task with source_video_url', async () => {
     vi.mocked(mockHttp.request).mockResolvedValueOnce({ id: 'task-3' });
-    const videoToVideo = new VideoToVideo(mockHttp);
+    const editVideo = new EditVideo(mockHttp);
 
-    await videoToVideo.create({ prompt: 'Regrade to dusk', video_url: 'https://example.com/source.mp4', upload_cn: false });
+    await editVideo.create({ prompt: 'Regrade to dusk', source_video_url: 'https://cdn.runapi.ai/public/samples/source.mp4' });
 
-    expect(mockHttp.request).toHaveBeenCalledWith('POST', '/api/v1/runway_aleph/video_to_video', {
-      body: { prompt: 'Regrade to dusk', video_url: 'https://example.com/source.mp4', upload_cn: false },
+    expect(mockHttp.request).toHaveBeenCalledWith('POST', '/api/v1/runway_aleph/edit_video', {
+      body: { prompt: 'Regrade to dusk', source_video_url: 'https://cdn.runapi.ai/public/samples/source.mp4' },
     });
   });
 
-  it('gets video-to-video task by id', async () => {
-    vi.mocked(mockHttp.request).mockResolvedValueOnce({ id: 'task-3', status: 'completed', videos: [{ url: 'https://file.runapi.ai/video.mp4' }] });
-    const videoToVideo = new VideoToVideo(mockHttp);
+  it('gets edit-video task by id', async () => {
+    vi.mocked(mockHttp.request).mockResolvedValueOnce({
+      id: 'task-3',
+      status: 'completed',
+      videos: [{ url: 'https://file.runapi.ai/video.mp4' }],
+      images: [{ url: 'https://file.runapi.ai/cover.png' }],
+    });
+    const editVideo = new EditVideo(mockHttp);
 
-    const result = await videoToVideo.get('task-3');
+    const result = await editVideo.get('task-3');
 
-    expect(mockHttp.request).toHaveBeenCalledWith('GET', '/api/v1/runway_aleph/video_to_video/task-3', {});
+    expect(mockHttp.request).toHaveBeenCalledWith('GET', '/api/v1/runway_aleph/edit_video/task-3', {});
     expect(result.videos?.[0]?.url).toBe('https://file.runapi.ai/video.mp4');
+    expect(result.images?.[0]?.url).toBe('https://file.runapi.ai/cover.png');
   });
 });

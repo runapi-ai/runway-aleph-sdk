@@ -3,12 +3,12 @@
 module RunApi
   module RunwayAleph
     module Resources
-      class VideoToVideo
+      class EditVideo
         include RunApi::Core::ResourceHelpers
 
-        ENDPOINT = "/api/v1/runway_aleph/video_to_video"
+        ENDPOINT = "/api/v1/runway_aleph/edit_video"
         RESPONSE_CLASS = Types::TaskCreateResponse
-        COMPLETED_RESPONSE_CLASS = Types::CompletedVideoToVideoResponse
+        COMPLETED_RESPONSE_CLASS = Types::CompletedEditVideoResponse
 
         def initialize(http)
           @http = http
@@ -33,7 +33,7 @@ module RunApi
 
         def validate_params!(params)
           raise Core::ValidationError, "prompt is required" unless param(params, :prompt)
-          raise Core::ValidationError, "video_url is required" unless param(params, :video_url)
+          raise Core::ValidationError, "source_video_url is required" unless param(params, :source_video_url)
           validate_optional!(params, :aspect_ratio, Types::ASPECT_RATIOS)
         end
       end

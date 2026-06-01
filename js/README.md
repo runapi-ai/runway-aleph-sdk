@@ -1,6 +1,6 @@
 # Runway Aleph API JavaScript SDK for RunAPI
 
-The runway aleph api JavaScript SDK is the language-specific package for Runway Aleph on RunAPI. Use this runway aleph api package for video-to-video transformation when your application needs JSON request bodies, task status lookup, and consistent RunAPI errors in JavaScript.
+The runway aleph api JavaScript SDK is the language-specific package for Runway Aleph on RunAPI. Use this runway aleph api package for prompt-guided video editing when your application needs JSON request bodies, task status lookup, and consistent RunAPI errors in JavaScript.
 
 This runway aleph api README is the JavaScript package guide inside the public `runway-aleph-sdk` repository. For the repository overview, start at `../README.md`; for model details, use https://runapi.ai/models/runway-aleph; for API reference, use https://runapi.ai/docs#runway-aleph; for SDK docs, use https://runapi.ai/docs#sdk-runway-aleph.
 
@@ -16,12 +16,12 @@ npm install @runapi.ai/runway-aleph
 import { RunwayAlephClient } from '@runapi.ai/runway-aleph';
 
 const client = new RunwayAlephClient();
-const task = await client.videoToVideo.create({
+const task = await client.editVideo.create({
   model: 'runway-aleph',
   prompt: 'Transform the scene into a watercolor painting style',
-  video_url: 'https://cdn.example.com/input.mp4',
+  video_url: 'https://cdn.runapi.ai/public/samples/video.mp4',
 });
-const status = await client.videoToVideo.get(task.id);
+const status = await client.editVideo.get(task.id);
 ```
 
 Use `create` when you want to submit a task and return quickly, `get` when you need the latest task state, and `run` when a script should create and poll until completion. In web request handlers, prefer `create` plus webhook or later `get` polling so a worker is not held open.

@@ -2,7 +2,7 @@
 
 require "runapi/core"
 require_relative "runway_aleph/types"
-require_relative "runway_aleph/resources/video_to_video"
+require_relative "runway_aleph/resources/edit_video"
 require_relative "runway_aleph/client"
 
 module RunApi

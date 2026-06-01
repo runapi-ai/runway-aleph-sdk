@@ -1,11 +1,11 @@
 import { createHttpClient, type ClientOptions } from '@runapi.ai/core';
-import { VideoToVideo } from './resources/video-to-video';
+import { EditVideo } from './resources/edit-video';
 
 export class RunwayAlephClient {
-  public readonly videoToVideo: VideoToVideo;
+  public readonly editVideo: EditVideo;
 
   constructor(options: ClientOptions = {}) {
     const http = createHttpClient(options);
-    this.videoToVideo = new VideoToVideo(http);
+    this.editVideo = new EditVideo(http);
   }
 }

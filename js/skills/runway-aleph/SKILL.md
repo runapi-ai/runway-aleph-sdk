@@ -34,27 +34,27 @@ Generate and edit video with Runway Aleph through RunAPI. The default path for o
 
 The `runapi` binary is the runtime dependency. Run `runapi auth status` first. For agents and headless runs, prefer `RUNAPI_API_KEY` or import it into saved config with `printf '%s' "$RUNAPI_API_KEY" | runapi auth import-token --token -`. Use `runapi login` only when the user explicitly wants interactive browser auth.
 
-Inspect the available actions and request fields with CLI help:
+Inspect the available commands and request fields with CLI help:
 
 ```shell
 runapi runway-aleph --help
-runapi runway-aleph video-to-video --help
+runapi runway-aleph edit-video --help
 ```
 
 Run a one-off task (synchronous — polls until the task completes):
 
 ```shell
-runapi runway-aleph video-to-video --input-file request.json
+runapi runway-aleph edit-video --input-file request.json
 ```
 
 Submit asynchronously and poll separately:
 
 ```shell
-runapi runway-aleph video-to-video --async --input-file request.json
-runapi wait <task-id> --service runway-aleph --action video-to-video
+runapi runway-aleph edit-video --async --input-file request.json
+runapi wait <task-id> --service runway-aleph --action edit-video
 ```
 
-Available actions: `video-to-video`.
+Available commands: `edit-video`.
 
 ## SDK integration path
 
@@ -69,4 +69,3 @@ When integrating Runway Aleph into an app, backend, worker, or library — not f
 - Model overview, pricing, and rate limits: https://runapi.ai/models/runway-aleph.md
 - Provider comparison: https://runapi.ai/providers/runway.md
 - Full model catalog: https://runapi.ai/models.md
-

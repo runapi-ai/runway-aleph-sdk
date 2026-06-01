@@ -1,6 +1,6 @@
 # Runway Aleph API Go SDK for RunAPI
 
-The runway aleph api Go SDK is the language-specific package for Runway Aleph on RunAPI. Use this runway aleph api package for video-to-video transformation when your application needs JSON request bodies, task status lookup, and consistent RunAPI errors in Go.
+The runway aleph api Go SDK is the language-specific package for Runway Aleph on RunAPI. Use this runway aleph api package for prompt-guided video editing when your application needs JSON request bodies, task status lookup, and consistent RunAPI errors in Go.
 
 This runway aleph api README is the Go package guide inside the public `runway-aleph-sdk` repository. For the repository overview, start at `../README.md`; for model details, use https://runapi.ai/models/runway-aleph; for API reference, use https://runapi.ai/docs#runway-aleph; for SDK docs, use https://runapi.ai/docs#sdk-runway-aleph.
 
@@ -20,12 +20,12 @@ import (
 )
 
 client, err := runwayaleph.NewClient()
-task, err := client.VideoToVideo.Create(context.Background(), runwayaleph.VideoToVideoParams{
+task, err := client.EditVideo.Create(context.Background(), runwayaleph.EditVideoParams{
   Model:    "runway-aleph",
   Prompt:   "Transform the scene into a watercolor painting style",
-  VideoURL: "https://cdn.example.com/input.mp4",
+  VideoURL: "https://cdn.runapi.ai/public/samples/video.mp4",
 })
-status, err := client.VideoToVideo.Get(context.Background(), task.ID)
+status, err := client.EditVideo.Get(context.Background(), task.ID)
 ```
 
 Use `Create` when you want to submit a task and return quickly, `Get` when you need the latest task state, and `Run` when a script should create and poll until completion. In web request handlers, prefer `Create` plus webhook or later `Get` polling so a worker is not held open.

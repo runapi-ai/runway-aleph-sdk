@@ -7,32 +7,34 @@ export interface Video {
   url: string;
 }
 
+export interface Image {
+  url: string;
+}
+
 export interface TaskCreateResponse {
   id: string;
   status?: AsyncTaskStatus;
 }
 
-export interface VideoToVideoResponse {
+export interface EditVideoResponse {
   id: string;
   status: AsyncTaskStatus;
   videos?: Video[];
-  image_url?: string;
-  parent_task_id?: string;
+  images?: Image[];
   error?: string;
   [key: string]: unknown;
 }
 
-export type CompletedVideoToVideoResponse = VideoToVideoResponse & {
+export type CompletedEditVideoResponse = EditVideoResponse & {
   status: 'completed';
   videos: Video[];
 };
 
-export interface VideoToVideoParams {
+export interface EditVideoParams {
   prompt: string;
-  video_url: string;
+  source_video_url: string;
   callback_url?: string;
   watermark?: string;
-  upload_cn?: boolean;
   aspect_ratio?: RunwayAlephAspectRatio;
   seed?: number;
   reference_image_url?: string;

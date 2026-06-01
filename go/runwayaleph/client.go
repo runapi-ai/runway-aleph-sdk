@@ -8,11 +8,11 @@ import (
 )
 
 const (
-	videoToVideoPath = "/api/v1/runway_aleph/video_to_video"
+	editVideoPath = "/api/v1/runway_aleph/edit_video"
 )
 
 type Client struct {
-	VideoToVideo *VideoToVideo
+	EditVideo *EditVideo
 }
 
 func NewClient(opts ...option.ClientOption) (*Client, error) {
@@ -29,23 +29,23 @@ func NewClient(opts ...option.ClientOption) (*Client, error) {
 
 func NewClientWithHTTP(httpClient core.HTTPClient) *Client {
 	return &Client{
-		VideoToVideo: &VideoToVideo{http: httpClient},
+		EditVideo: &EditVideo{http: httpClient},
 	}
 }
 
-type VideoToVideo struct{ http core.HTTPClient }
+type EditVideo struct{ http core.HTTPClient }
 
-func (r *VideoToVideo) Create(ctx context.Context, params VideoToVideoParams, opts ...option.RequestOption) (*core.TaskCreateResponse, error) {
+func (r *EditVideo) Create(ctx context.Context, params EditVideoParams, opts ...option.RequestOption) (*core.TaskCreateResponse, error) {
 	requestOptions, _ := option.ResolveRequestOptions(opts...)
-	return core.PostJSON[core.TaskCreateResponse](ctx, r.http, videoToVideoPath, core.CompactParams(params), requestOptions)
+	return core.PostJSON[core.TaskCreateResponse](ctx, r.http, editVideoPath, core.CompactParams(params), requestOptions)
 }
 
-func (r *VideoToVideo) Get(ctx context.Context, id string, opts ...option.RequestOption) (*TaskResponse, error) {
+func (r *EditVideo) Get(ctx context.Context, id string, opts ...option.RequestOption) (*TaskResponse, error) {
 	requestOptions, _ := option.ResolveRequestOptions(opts...)
-	return core.GetJSON[TaskResponse](ctx, r.http, core.ResourcePath(videoToVideoPath, id), requestOptions)
+	return core.GetJSON[TaskResponse](ctx, r.http, core.ResourcePath(editVideoPath, id), requestOptions)
 }
 
-func (r *VideoToVideo) Run(ctx context.Context, params VideoToVideoParams, opts ...option.RequestOption) (*TaskResponse, error) {
+func (r *EditVideo) Run(ctx context.Context, params EditVideoParams, opts ...option.RequestOption) (*TaskResponse, error) {
 	_, pollingOptions := option.ResolveRequestOptions(opts...)
 	return core.RunAsync(ctx, func(ctx context.Context) (*core.TaskCreateResponse, error) {
 		return r.Create(ctx, params, opts...)

@@ -1,6 +1,6 @@
 # Runway Aleph API Ruby SDK for RunAPI
 
-The runway aleph api Ruby SDK is the language-specific package for Runway Aleph on RunAPI. Use this runway aleph api package for video-to-video transformation when your application needs JSON request bodies, task status lookup, and consistent RunAPI errors in Ruby.
+The runway aleph api Ruby SDK is the language-specific package for Runway Aleph on RunAPI. Use this runway aleph api package for prompt-guided video editing when your application needs JSON request bodies, task status lookup, and consistent RunAPI errors in Ruby.
 
 This runway aleph api README is the Ruby package guide inside the public `runway-aleph-sdk` repository. For the repository overview, start at `../README.md`; for model details, use https://runapi.ai/models/runway-aleph; for API reference, use https://runapi.ai/docs#runway-aleph; for SDK docs, use https://runapi.ai/docs#sdk-runway-aleph.
 
@@ -16,12 +16,12 @@ gem install runapi-runway_aleph
 require "runapi-runway_aleph"
 
 client = RunApi::RunwayAleph::Client.new
-task = client.video_to_video.create(
+task = client.edit_video.create(
   model: "runway-aleph",
   prompt: "Transform the scene into a watercolor painting style",
-  video_url: "https://cdn.example.com/input.mp4"
+  video_url: "https://cdn.runapi.ai/public/samples/video.mp4"
 )
-status = client.video_to_video.get(task.id)
+status = client.edit_video.get(task.id)
 ```
 
 Use `create` when you want to submit a task and return quickly, `get` when you need the latest task state, and `run` when a script should create and poll until completion. In web request handlers, prefer `create` plus webhook or later `get` polling so a worker is not held open.

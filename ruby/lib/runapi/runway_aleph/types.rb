@@ -10,19 +10,22 @@ module RunApi
         required :url, String
       end
 
-      class VideoToVideoResponse < RunApi::Core::TaskResponse
+      class Image < RunApi::Core::BaseModel
+        required :url, String
+      end
+
+      class EditVideoResponse < RunApi::Core::TaskResponse
         required :id, String
         optional :status, String, enum: -> { RunApi::Core::TaskResponse::Status::ALL }
-        optional :videos, [ -> { Video } ]
-        optional :image_url, String
-        optional :parent_task_id, String
+        optional :videos, [-> { Video }]
+        optional :images, [-> { Image }]
         optional :error, String
       end
 
-      class TaskCreateResponse < VideoToVideoResponse; end
+      class TaskCreateResponse < EditVideoResponse; end
 
-      class CompletedVideoToVideoResponse < VideoToVideoResponse
-        required :videos, [ -> { Video } ]
+      class CompletedEditVideoResponse < EditVideoResponse
+        required :videos, [-> { Video }]
       end
     end
   end

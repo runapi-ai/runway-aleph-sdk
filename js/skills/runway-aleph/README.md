@@ -21,7 +21,7 @@
 </div>
 <br/>
 
-Transform video with Runway Aleph video-to-video style transfer. This skill helps Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents integrate Runway Aleph through RunAPI.
+Edit video with Runway Aleph prompt-guided transformations. This skill helps Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents integrate Runway Aleph through RunAPI.
 
 The canonical agent file is `skills/runway-aleph/SKILL.md`.
 
@@ -50,10 +50,10 @@ Install the runway-aleph skill for me:
 import { RunwayAlephClient } from '@runapi.ai/runway-aleph';
 
 const client = new RunwayAlephClient();
-const result = await client.videoToVideo.run({
+const result = await client.editVideo.run({
   model: 'runway-aleph',
   prompt: 'Transform the scene into a watercolor painting style',
-  video_url: 'https://cdn.example.com/input.mp4',
+  source_video_url: 'https://cdn.runapi.ai/public/samples/video.mp4',
 });
 const url = result.videos[0].url;
 ```

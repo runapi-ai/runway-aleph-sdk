@@ -13,13 +13,12 @@ const (
 	Aspect21x9 RunwayAlephAspectRatio = "21:9"
 )
 
-type VideoToVideoParams struct {
+type EditVideoParams struct {
 	Prompt            string                 `json:"prompt" help:"required; transformation prompt"`
-	VideoURL          string                 `json:"video_url" help:"required; source video URL"`
+	SourceVideoURL    string                 `json:"source_video_url" help:"required; source video URL"`
 	CallbackURL       string                 `json:"callback_url,omitempty" help:"optional; webhook URL"`
 	Watermark         string                 `json:"watermark,omitempty" help:"optional; watermark text"`
-	UploadCN          *bool                  `json:"upload_cn,omitempty" help:"optional; use CN storage path"`
-	AspectRatio       RunwayAlephAspectRatio `json:"aspect_ratio,omitempty" help:"optional; 16:9, 9:16, 4:3, 3:4, 1:1, 21:9"`
+	AspectRatio       RunwayAlephAspectRatio `json:"aspect_ratio,omitempty" help:"optional; output aspect ratio"`
 	Seed              *int                   `json:"seed,omitempty" help:"optional; random seed"`
 	ReferenceImageURL string                 `json:"reference_image_url,omitempty" help:"optional; style reference image URL"`
 }
@@ -39,9 +38,12 @@ type Video struct {
 	URL string `json:"url"`
 }
 
+type Image struct {
+	URL string `json:"url"`
+}
+
 type TaskResponse struct {
 	AsyncTaskResponse
-	Videos       []Video `json:"videos,omitempty"`
-	ImageURL     string  `json:"image_url,omitempty"`
-	ParentTaskID string  `json:"parent_task_id,omitempty"`
+	Videos []Video `json:"videos,omitempty"`
+	Images []Image `json:"images,omitempty"`
 }

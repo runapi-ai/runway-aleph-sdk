@@ -20,7 +20,7 @@
 </div>
 <br/>
 
-The runway aleph api SDK packages JavaScript, Ruby, and Go clients for Runway Aleph on RunAPI. Use this runway aleph api SDK for video-to-video transformation workflows that need typed installs, JSON request bodies, task polling, and consistent RunAPI errors across services.
+The runway aleph api SDK packages JavaScript, Ruby, and Go clients for Runway Aleph on RunAPI. Use this runway aleph api SDK for prompt-guided video editing workflows that need typed installs, JSON request bodies, task polling, and consistent RunAPI errors across services.
 
 Runway Aleph belongs to the Runway catalog on RunAPI. The public model page is https://runapi.ai/models/runway-aleph; variant pages below carry pricing, rate-limit, and commercial-usage details. The public `runway-aleph-sdk` repository groups the JavaScript, Ruby, and Go packages for this model.
 
@@ -39,7 +39,7 @@ go get github.com/runapi-ai/runway-aleph-sdk/go@latest
 - Use `create` for submit-only jobs, `get` for status lookup, and `run` for submit-and-poll scripts.
 - Handle authentication, validation, rate limits, insufficient credits, task failures, and polling timeouts through RunAPI SDK errors.
 
-The JavaScript client exposes video to video resources, and the Ruby and Go packages mirror the same RunAPI task lifecycle.
+The JavaScript client exposes the edit-video resource, and the Ruby and Go packages mirror the same RunAPI task lifecycle.
 
 ## JavaScript quick start
 
@@ -48,11 +48,11 @@ import { RunwayAlephClient } from '@runapi.ai/runway-aleph';
 
 const client = new RunwayAlephClient();
 
-const task = await client.videoToVideo.create({
+const task = await client.editVideo.create({
   // Pass the Runway Aleph request body documented at https://runapi.ai/docs#runway-aleph.
 });
 
-const status = await client.videoToVideo.get(task.id);
+const status = await client.editVideo.get(task.id);
 ```
 
 For short scripts, use `run` with the same JSON body to create the task and wait for completion. For web request handlers, prefer `create` plus webhook or later `get` polling so the server does not hold a worker open.
