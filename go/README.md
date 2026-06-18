@@ -30,6 +30,8 @@ status, err := client.EditVideo.Get(context.Background(), task.ID)
 
 Use `Create` when you want to submit a task and return quickly, `Get` when you need the latest task state, and `Run` when a script should create and poll until completion. In web request handlers, prefer `Create` plus webhook or later `Get` polling so a worker is not held open.
 
+RunAPI-generated file URLs are temporary. Download and store generated images, videos, audio, or other files in your own durable storage within 7 days; do not treat returned URLs as long-term assets.
+
 ## Language notes
 
 Use the public Go module with `github.com/runapi-ai/core-sdk/go` options when building video services, CLIs, or workers. Keep `RUNAPI_API_KEY` in the environment or your secret manager; never commit API keys or callback secrets.

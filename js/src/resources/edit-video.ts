@@ -5,9 +5,16 @@ import type { CompletedEditVideoResponse, EditVideoParams, EditVideoResponse, Ta
 
 const ENDPOINT = '/api/v1/runway_aleph/edit_video';
 
+/** Transform an existing video using a text prompt. Optionally provide a reference_image_url to guide the visual style of the transformation. */
 export class EditVideo {
   constructor(private readonly http: HttpClient) {}
 
+  /**
+   * Create an edit video task and wait until complete.
+   * @param params Edit video parameters.
+   * @param options Per-request and polling overrides.
+   * @returns The completed edit video response.
+   */
   async run(params: EditVideoParams, options?: RequestOptions & PollingOptions): Promise<CompletedEditVideoResponse> {
     const { id } = await this.create(params, options);
     const response = await pollUntilComplete<EditVideoResponse>(() => this.get(id, options), {
@@ -17,10 +24,22 @@ export class EditVideo {
     return response as CompletedEditVideoResponse;
   }
 
+  /**
+   * Create an edit video task; returns immediately with a task id.
+   * @param params Edit video parameters.
+   * @param options Per-request overrides.
+   * @returns The task creation result.
+   */
   async create(params: EditVideoParams, options?: RequestOptions): Promise<TaskCreateResponse> {
     return this.http.request<TaskCreateResponse>('POST', ENDPOINT, { body: compactParams(params), ...options });
   }
 
+  /**
+   * Fetch the current status of an edit video task.
+   * @param id The task id.
+   * @param options Per-request overrides.
+   * @returns The current edit video task status.
+   */
   async get(id: string, options?: RequestOptions): Promise<EditVideoResponse> {
     return this.http.request<EditVideoResponse>('GET', `${ENDPOINT}/${id}`, options ?? {});
   }
