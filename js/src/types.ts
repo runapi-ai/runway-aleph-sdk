@@ -1,5 +1,7 @@
 import type { AsyncTaskStatus } from '@runapi.ai/core';
 
+/** Runway Aleph model slug. */
+export type RunwayAlephModel = 'runway-aleph';
 /** Output aspect ratio. Includes 21:9 ultra-wide for cinematic letterbox output. */
 export type RunwayAlephAspectRatio = '16:9' | '9:16' | '4:3' | '3:4' | '1:1' | '21:9';
 
@@ -45,6 +47,8 @@ export type CompletedEditVideoResponse = EditVideoResponse & {
  * to guide the visual style of the output.
  */
 export interface EditVideoParams {
+  /** Model slug. */
+  model: RunwayAlephModel;
   /** Text description of the desired transformation (e.g. "Make it look like a watercolor painting"). */
   prompt: string;
   /** Publicly accessible URL of the source video to transform. */

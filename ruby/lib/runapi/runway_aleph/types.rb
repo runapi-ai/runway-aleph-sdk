@@ -4,9 +4,6 @@ module RunApi
   module RunwayAleph
     # Type definitions and constants for Runway Aleph video editing.
     module Types
-      # Output aspect ratio options. Includes 21:9 ultra-wide for cinematic letterbox output.
-      ASPECT_RATIOS = %w[16:9 9:16 4:3 3:4 1:1 21:9].freeze
-
       # A generated output video.
       class Video < RunApi::Core::BaseModel
         optional :id, String

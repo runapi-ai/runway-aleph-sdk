@@ -11,6 +11,7 @@ module RunApi
         ENDPOINT = "/api/v1/runway_aleph/edit_video"
         RESPONSE_CLASS = Types::TaskCreateResponse
         COMPLETED_RESPONSE_CLASS = Types::CompletedEditVideoResponse
+        MODEL = "runway-aleph"
 
         def initialize(http)
           @http = http
@@ -31,7 +32,7 @@ module RunApi
         # @return [RunApi::RunwayAleph::Types::TaskCreateResponse] task creation result with id
         def create(**params)
           params = compact_params(params)
-          validate_params!(params)
+          validate_contract!(CONTRACT["edit-video"], params.merge(model: MODEL))
           request(:post, ENDPOINT, body: params)
         end
 
@@ -41,14 +42,6 @@ module RunApi
         # @return [RunApi::RunwayAleph::Types::EditVideoResponse] current task status
         def get(id)
           request(:get, "#{ENDPOINT}/#{id}")
-        end
-
-        private
-
-        def validate_params!(params)
-          raise Core::ValidationError, "prompt is required" unless param(params, :prompt)
-          raise Core::ValidationError, "source_video_url is required" unless param(params, :source_video_url)
-          validate_optional!(params, :aspect_ratio, Types::ASPECT_RATIOS)
         end
       end
     end

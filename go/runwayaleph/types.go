@@ -22,6 +22,7 @@ const (
 // Set ReferenceImageURL to guide the visual style with a reference image (style transfer).
 // Set Seed for reproducible output across identical inputs.
 type EditVideoParams struct {
+	Model             string                 `json:"model" help:"required; model slug"`
 	Prompt            string                 `json:"prompt" help:"required; transformation prompt"`
 	SourceVideoURL    string                 `json:"source_video_url" help:"required; source video URL"`
 	CallbackURL       string                 `json:"callback_url,omitempty" help:"optional; webhook URL"`

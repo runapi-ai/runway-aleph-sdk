@@ -73,7 +73,6 @@ def test_create_posts_compacted_body():
     fake = FakeHttp({"id": "t1", "status": "pending"})
     client = RunwayAlephClient(api_key="k", http_client=fake)
     result = client.edit_video.create(
-        model="runway-aleph",
         prompt="hello",
         source_video_url="https://example.com/v.mp4",
         aspect_ratio="16:9",
@@ -84,13 +83,14 @@ def test_create_posts_compacted_body():
             "post",
             "/api/v1/runway_aleph/edit_video",
             {
-                "model": "runway-aleph",
                 "prompt": "hello",
                 "source_video_url": "https://example.com/v.mp4",
                 "aspect_ratio": "16:9",
             },
         ),
     ]
+    _, _, body = fake.calls[0]
+    assert "model" not in body
     assert isinstance(result, EditVideoResponse)
     assert result.id == "t1"
 
@@ -125,19 +125,22 @@ def test_run_polls_and_narrows_completed_type():
 def test_create_requires_prompt():
     client = RunwayAlephClient(api_key="k", http_client=FakeHttp())
     with pytest.raises(ValidationError, match="prompt is required"):
-        client.edit_video.create(source_video_url="https://example.com/v.mp4")
+        client.edit_video.create(
+            model="runway-aleph", source_video_url="https://example.com/v.mp4"
+        )
 
 
 def test_create_requires_source_video_url():
     client = RunwayAlephClient(api_key="k", http_client=FakeHttp())
     with pytest.raises(ValidationError, match="source_video_url is required"):
-        client.edit_video.create(prompt="hi")
+        client.edit_video.create(model="runway-aleph", prompt="hi")
 
 
 def test_create_rejects_invalid_aspect_ratio():
     client = RunwayAlephClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="Invalid aspect_ratio"):
+    with pytest.raises(ValidationError, match="aspect_ratio must be one of"):
         client.edit_video.create(
+            model="runway-aleph",
             prompt="hi",
             source_video_url="https://example.com/v.mp4",
             aspect_ratio="99:1",
@@ -148,6 +151,7 @@ def test_create_accepts_valid_aspect_ratio():
     fake = FakeHttp({"id": "t1", "status": "pending"})
     client = RunwayAlephClient(api_key="k", http_client=fake)
     client.edit_video.create(
+        model="runway-aleph",
         prompt="hi",
         source_video_url="https://example.com/v.mp4",
         aspect_ratio="21:9",

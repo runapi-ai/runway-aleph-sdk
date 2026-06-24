@@ -38,6 +38,9 @@ func TestEditVideoCreate(t *testing.T) {
 	if body["source_video_url"] != "https://cdn.runapi.ai/public/samples/source.mp4" {
 		t.Fatalf("unexpected body: %v", body)
 	}
+	if _, ok := body["model"]; ok {
+		t.Fatalf("expected request body to omit model key: %v", body)
+	}
 	if _, ok := body["upload_cn"]; ok {
 		t.Fatalf("expected request body to omit upload_cn key: %v", body)
 	}

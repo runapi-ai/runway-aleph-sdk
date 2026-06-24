@@ -2,6 +2,7 @@
 
 require "runapi/core"
 require_relative "runway_aleph/types"
+require_relative "runway_aleph/contract_gen"
 require_relative "runway_aleph/resources/edit_video"
 require_relative "runway_aleph/client"
 
