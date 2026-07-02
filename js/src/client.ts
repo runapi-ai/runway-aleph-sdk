@@ -12,7 +12,7 @@ import { EditVideo } from './resources/edit-video';
  *
  * const result = await client.editVideo.run({
  *   prompt: 'Make it look like a watercolor painting',
- *   source_video_url: 'https://example.com/input.mp4',
+ *   source_video_url: 'https://cdn.runapi.ai/public/samples/video.mp4',
  * });
  * ```
  */

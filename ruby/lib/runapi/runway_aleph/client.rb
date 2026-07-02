@@ -10,7 +10,7 @@ module RunApi
     #   client = RunApi::RunwayAleph::Client.new(api_key: "your-api-key")
     #   result = client.edit_video.run(
     #     prompt: "Make it look like a watercolor painting",
-    #     source_video_url: "https://example.com/input.mp4"
+    #     source_video_url: "https://cdn.runapi.ai/public/samples/video.mp4"
     #   )
     class Client < RunApi::Core::Client
       # @return [Resources::EditVideo] Prompt-driven video editing with optional style reference.

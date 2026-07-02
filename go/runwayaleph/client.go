@@ -6,7 +6,7 @@
 //	client, err := runwayaleph.NewClient(option.WithAPIKey("sk-your-api-key"))
 //	result, err := client.EditVideo.Run(ctx, runwayaleph.EditVideoParams{
 //	    Prompt:         "Make it look like a watercolor painting",
-//	    SourceVideoURL: "https://example.com/input.mp4",
+//	    SourceVideoURL: "https://cdn.runapi.ai/public/samples/video.mp4",
 //	})
 package runwayaleph
 
