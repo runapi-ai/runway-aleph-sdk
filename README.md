@@ -7,14 +7,14 @@
 </h3>
 
 <p align="center">
-  Runway Aleph API SDKs for JavaScript, Python, Ruby, Go, and Java on RunAPI.
+  Runway Aleph API SDKs for JavaScript, Python, Ruby, Go, Java, and PHP on RunAPI.
 </p>
 
 <div align="center">
 
 [![npm](https://img.shields.io/npm/v/@runapi.ai/runway-aleph)](https://www.npmjs.com/package/@runapi.ai/runway-aleph)
 [![PyPI](https://img.shields.io/pypi/v/runapi-runway-aleph)](https://pypi.org/project/runapi-runway-aleph/)
-[![RubyGems](https://img.shields.io/gem/v/runapi-runway_aleph)](https://rubygems.org/gems/runapi-runway_aleph)
+[![RubyGems](https://img.shields.io/gem/v/runapi-runway-aleph)](https://rubygems.org/gems/runapi-runway-aleph)
 [![Go Reference](https://pkg.go.dev/badge/github.com/runapi-ai/runway-aleph-sdk/go.svg)](https://pkg.go.dev/github.com/runapi-ai/runway-aleph-sdk/go)
 [![Maven Central](https://img.shields.io/maven-central/v/ai.runapi/runapi-runway-aleph)](https://central.sonatype.com/artifact/ai.runapi/runapi-runway-aleph)
 [![License](https://img.shields.io/github/license/runapi-ai/runway-aleph-sdk)](https://github.com/runapi-ai/runway-aleph-sdk/blob/main/LICENSE)
@@ -22,16 +22,16 @@
 </div>
 <br/>
 
-The Runway Aleph API SDK packages JavaScript, Python, Ruby, Go, and Java clients for Runway Aleph on RunAPI. Use it for prompt-guided video editing workflows when your app needs typed request builders, predictable task polling, file upload helpers, account helpers, and consistent RunAPI errors.
+The Runway Aleph API SDK packages JavaScript, Python, Ruby, Go, Java, and PHP clients for Runway Aleph on RunAPI. Use it for prompt-guided video editing workflows when your app needs typed request builders, predictable task polling, file upload helpers, account helpers, and consistent RunAPI errors.
 
-Runway Aleph is listed in the RunAPI model catalog at https://runapi.ai/models/runway-aleph. Variant pages below carry pricing, rate-limit, and commercial-usage details. The public `runway-aleph-sdk` repository groups the language packages, examples, CI, and release tags for this model.
+Runway Aleph is listed in the RunAPI model catalog at https://runapi.ai/models/runway-aleph. Variant pages below carry pricing, rate-limit, and commercial-usage details. The public `runway-aleph-sdk` repository groups the non-PHP language packages, examples, CI, and release tags for this model. The PHP package is released from a split Composer repository.
 
 ## Install
 
 ```bash
 npm install @runapi.ai/runway-aleph
 pip install runapi-runway-aleph
-gem install runapi-runway_aleph
+gem install runapi-runway-aleph
 go get github.com/runapi-ai/runway-aleph-sdk/go@latest
 ```
 
@@ -39,7 +39,7 @@ Gradle:
 
 ```kotlin
 dependencies {
-  implementation("ai.runapi:runapi-runway-aleph:0.1.0")
+  implementation("ai.runapi:runapi-runway-aleph:0.1.1")
 }
 ```
 
@@ -49,7 +49,7 @@ Maven:
 <dependency>
   <groupId>ai.runapi</groupId>
   <artifactId>runapi-runway-aleph</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 </dependency>
 ```
 
@@ -57,10 +57,12 @@ Use the Java BOM when installing multiple RunAPI Java modules:
 
 ```kotlin
 dependencies {
-  implementation(platform("ai.runapi:runapi-bom:0.1.0"))
+  implementation(platform("ai.runapi:runapi-bom:0.1.7"))
   implementation("ai.runapi:runapi-runway-aleph")
 }
 ```
+
+The PHP package is published from the split Composer repository as `runapi-ai/runway-aleph`; see https://github.com/runapi-ai/runway-aleph-php for PHP install and examples.
 
 ## What you can build
 
@@ -102,7 +104,7 @@ Most media endpoints are asynchronous. `create()` submits a task and returns its
 
 - `js/` publishes `@runapi.ai/runway-aleph`.
 - `python/` publishes `runapi-runway-aleph`.
-- `ruby/` publishes `runapi-runway_aleph` when RubyGems publishing resumes.
+- `ruby/` publishes `runapi-runway-aleph`.
 - `go/` publishes `github.com/runapi-ai/runway-aleph-sdk/go` and depends on `github.com/runapi-ai/core-sdk/go`.
 - `java/` publishes `ai.runapi:runapi-runway-aleph` and depends on `ai.runapi:runapi-core`.
 
@@ -112,6 +114,7 @@ Most media endpoints are asynchronous. `create()` submits a task and returns its
 - SDK docs: https://runapi.ai/docs#sdk-runway-aleph
 - Product docs: https://runapi.ai/docs#runway-aleph
 - SDK repository: https://github.com/runapi-ai/runway-aleph-sdk
+- PHP package repository: https://github.com/runapi-ai/runway-aleph-php
 - Skill repository: https://github.com/runapi-ai/runway-aleph
 - Provider comparison: https://runapi.ai/providers/runway
 - Full catalog: https://runapi.ai/models
@@ -131,7 +134,7 @@ RunAPI-generated file URLs are temporary. Download and store generated images, v
 
 ### Which package should I install for Runway Aleph work?
 
-Install the model package for your language: `@runapi.ai/runway-aleph` on npm, `runapi-runway-aleph` on PyPI, `runapi-runway_aleph` on RubyGems, `github.com/runapi-ai/runway-aleph-sdk/go`, or `ai.runapi:runapi-runway-aleph`. Install core SDK packages only when you are building shared SDK infrastructure.
+Install the model package for your language: `@runapi.ai/runway-aleph` on npm, `runapi-runway-aleph` on PyPI, `runapi-runway-aleph` on RubyGems, `github.com/runapi-ai/runway-aleph-sdk/go`, `ai.runapi:runapi-runway-aleph` on Maven Central, or `runapi-ai/runway-aleph` on Packagist. Install core SDK packages only when you are building shared SDK infrastructure.
 
 ### Where should public links point?
 
