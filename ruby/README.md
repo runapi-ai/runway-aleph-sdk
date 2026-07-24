@@ -7,13 +7,13 @@ This README is the Ruby package guide inside the public `runway-aleph-sdk` repos
 ## Install
 
 ```bash
-gem install runapi-runway_aleph
+gem install runapi-runway-aleph
 ```
 
 ## Quick start
 
 ```ruby
-require "runapi-runway_aleph"
+require "runapi/runway_aleph"
 
 client = RunApi::RunwayAleph::Client.new
 task = client.edit_video.create(

@@ -4,27 +4,28 @@ build-backend = "hatchling.build"
 
 [project]
 name = "runapi-runway-aleph"
-version = "0.1.0"
-description = "Runway Aleph prompt-guided video editing client for RunAPI"
+version = "0.2.0"
+description = "RunAPI Runway Aleph SDK for prompt-guided video editing workflows in JavaScript, Python, Ruby, Go, Java, and PHP"
 readme = "README.md"
 requires-python = ">=3.9"
 license = "Apache-2.0"
 authors = [{ name = "RunAPI", email = "contact@runapi.ai" }]
-keywords = ["runapi", "runway", "runway-aleph", "video", "ai", "sdk"]
-dependencies = ["runapi-core"]
+keywords = ["runapi", "runapi-ai", "runway-aleph", "api", "sdk", "typescript", "python", "ruby", "golang", "java", "maven", "gradle", "video-generation", "text-to-video", "video-api", "runway-aleph-api"]
+dependencies = ["runapi-core>=0.3.0"]
 
 [project.urls]
 Homepage = "https://runapi.ai/models/runway-aleph"
 Documentation = "https://runapi.ai/docs#sdk-runway-aleph"
+Source = "https://github.com/runapi-ai/runway-aleph-sdk"
+Issues = "https://github.com/runapi-ai/runway-aleph-sdk/issues"
+Changelog = "https://github.com/runapi-ai/runway-aleph-sdk/blob/main/CHANGELOG.md"
+"Release Notes" = "https://github.com/runapi-ai/runway-aleph-sdk/releases/tag/python%2Fv0.2.0"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/runapi"]
 
 [tool.uv]
 package = true
-
-[tool.uv.sources]
-runapi-core = { workspace = true }
 
 [dependency-groups]
 dev = ["pytest>=8"]

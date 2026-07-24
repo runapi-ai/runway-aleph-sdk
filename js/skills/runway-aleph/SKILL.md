@@ -36,7 +36,7 @@ Generate and edit video with Runway Aleph through RunAPI. The default path for o
 When integrating Runway Aleph into an app, backend, worker, library, Rails service, Node service, Go service, webhook pipeline, or production workflow, start by checking the current SDK package and official usage. Confirm install commands, client methods (`create`, `get`, `run`), request fields, response shape, and error classes before using CLI help or raw HTTP examples. Use a RunAPI SDK package:
 
 - JavaScript / TypeScript: `@runapi.ai/runway-aleph`
-- Ruby: `runapi-runway_aleph`
+- Ruby: `runapi-runway-aleph`
 - Go: `github.com/runapi-ai/runway-aleph-sdk/go`
 
 ## CLI path
