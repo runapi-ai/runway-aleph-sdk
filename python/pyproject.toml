@@ -15,7 +15,7 @@ dependencies = ["runapi-core>=0.3.1"]
 
 [project.urls]
 Homepage = "https://runapi.ai/models/runway-aleph"
-Documentation = "https://runapi.ai/docs#sdk-runway-aleph"
+Documentation = "https://runapi.ai/docs/resources/sdks"
 Source = "https://github.com/runapi-ai/runway-aleph-sdk"
 Issues = "https://github.com/runapi-ai/runway-aleph-sdk/issues"
 Changelog = "https://github.com/runapi-ai/runway-aleph-sdk/blob/main/CHANGELOG.md"
