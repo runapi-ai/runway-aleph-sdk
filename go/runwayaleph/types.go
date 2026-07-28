@@ -1,6 +1,8 @@
 // Package runwayaleph provides the Runway Aleph video editing API client.
 package runwayaleph
 
+import "github.com/runapi-ai/core-sdk/go/core"
+
 // RunwayAlephAspectRatio controls the output video aspect ratio.
 // Runway Aleph supports an additional ultra-wide 21:9 ratio beyond the standard set.
 type RunwayAlephAspectRatio string
@@ -34,6 +36,7 @@ type EditVideoParams struct {
 
 // AsyncTaskResponse carries the task ID, lifecycle status, and error for Runway Aleph async operations.
 type AsyncTaskResponse struct {
+	core.TaskBillingFacts
 	ID     string     `json:"id"`
 	Status TaskStatus `json:"status"`
 	Error  string     `json:"error,omitempty"`

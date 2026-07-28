@@ -1,4 +1,4 @@
-import type { AsyncTaskStatus } from '@runapi.ai/core';
+import type { AsyncTaskStatus, TaskBillingResponse, TaskResponse } from '@runapi.ai/core';
 
 /** Runway Aleph model slug. */
 export type RunwayAlephModel = 'runway-aleph';
@@ -17,13 +17,13 @@ export interface Image {
 }
 
 /** Initial response when a video editing task is created. */
-export interface TaskCreateResponse {
+export interface TaskCreateResponse extends TaskBillingResponse {
   id: string;
   status?: AsyncTaskStatus;
 }
 
 /** Task status response for a video editing operation. Includes output videos and images when complete. */
-export interface EditVideoResponse {
+export interface EditVideoResponse extends TaskResponse {
   id: string;
   status: AsyncTaskStatus;
   /** Edited output video(s), populated when the task completes. */
