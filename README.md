@@ -111,8 +111,8 @@ Most media endpoints are asynchronous. `create()` submits a task and returns its
 ## Public links
 
 - Model page: https://runapi.ai/models/runway-aleph
-- SDK docs: https://runapi.ai/docs#sdk-runway-aleph
-- Product docs: https://runapi.ai/docs#runway-aleph
+- SDK docs: https://runapi.ai/docs/resources/sdks
+- Product docs: https://runapi.ai/docs/api/runway-aleph/edit-video
 - SDK repository: https://github.com/runapi-ai/runway-aleph-sdk
 - PHP package repository: https://github.com/runapi-ai/runway-aleph-php
 - Skill repository: https://github.com/runapi-ai/runway-aleph
