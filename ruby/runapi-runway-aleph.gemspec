@@ -4,10 +4,10 @@ Dir.chdir(__dir__) do
 
   Gem::Specification.new do |spec|
     spec.name = "runapi-runway-aleph"
-    spec.version = "0.2.10"
+    spec.version = "0.2.11"
     spec.metadata["runapi_slug"] = "runway-aleph"
     spec.authors = ["RunAPI"]
-    spec.email = ["support@runapi.ai"]
+    spec.email = ["contact@runapi.ai"]
 
     spec.summary = "Runway Aleph Ruby SDK for RunAPI"
     spec.description = "The Runway Aleph Ruby SDK is the language-specific package for Runway Aleph on RunAPI. Use this package for video generation, animation, and video editing workflows when your application needs request bodies, task status lookup, and consistent RunAPI errors in Ruby."

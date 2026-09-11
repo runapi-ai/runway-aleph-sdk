@@ -1,5 +1,11 @@
 # Changelog
 
+## [ruby/v0.2.11](https://github.com/runapi-ai/runway-aleph-sdk/releases/tag/ruby%2Fv0.2.11) - 2026-09-11
+
+### Fixed
+- Correct the package contact email to contact@runapi.ai.
+
+
 ## [ruby/v0.2.10](https://github.com/runapi-ai/runway-aleph-sdk/releases/tag/ruby%2Fv0.2.10) - 2026-09-04
 
 ### Changed
