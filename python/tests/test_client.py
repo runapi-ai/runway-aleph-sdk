@@ -85,10 +85,8 @@ def test_create_posts_compacted_body():
             {
                 "prompt": "hello",
                 "source_video_url": "https://runapi.ai/v.mp4",
-                "aspect_ratio": "16:9",
-            },
-        ),
-    ]
+                "aspect_ratio": "16:9"},
+        )]
     _, _, body = fake.calls[0]
     assert "model" not in body
     assert isinstance(result, EditVideoResponse)
@@ -105,7 +103,7 @@ def test_get_fetches_by_id():
 def test_run_polls_and_narrows_completed_type():
     fake = FakeHttp(
         {"id": "t1", "status": "pending"},
-        {"id": "t1", "status": "completed", "videos": [{"url": "https://x/y.mp4"}]},
+        {"id": "t1", "status": "completed", "usage": {"cost": 0.05}, "videos": [{"url": "https://x/y.mp4"}]},
     )
     client = RunwayAlephClient(api_key="k", http_client=fake)
     result = client.edit_video.run(
