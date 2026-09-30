@@ -22,22 +22,6 @@ const (
 	editVideoPath = "/api/v1/runway_aleph/edit_video"
 )
 
-// The endpoint targets a fixed model that is not sent on the wire, so the
-// model is injected only into a validation copy of the request body.
-const editVideoModel = "runway-aleph"
-
-// validateAction validates a compacted request body against one contract
-// action, injecting the endpoint's fixed model (never posted) so contract
-// model-membership and per-field checks apply.
-func validateAction(action, model string, body map[string]any) error {
-	withModel := make(map[string]any, len(body)+1)
-	for key, value := range body {
-		withModel[key] = value
-	}
-	withModel["model"] = model
-	return core.ValidateParams(contractSchema[action], withModel)
-}
-
 // Client provides Runway Aleph prompt-driven video editing.
 type Client struct {
 	base.Base
@@ -73,9 +57,6 @@ type EditVideo struct{ http core.HTTPClient }
 func (r *EditVideo) Create(ctx context.Context, params EditVideoParams, opts ...option.RequestOption) (*core.TaskCreateResponse, error) {
 	requestOptions, _ := option.ResolveRequestOptions(opts...)
 	body := core.CompactParams(params)
-	if err := validateAction("edit-video", editVideoModel, body); err != nil {
-		return nil, err
-	}
 	return core.PostJSON[core.TaskCreateResponse](ctx, r.http, editVideoPath, body, requestOptions)
 }
 

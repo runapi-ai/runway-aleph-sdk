@@ -1,7 +1,7 @@
 import pytest
 
 from runapi.core import config
-from runapi.core.errors import AuthenticationError, ValidationError
+from runapi.core.errors import AuthenticationError
 from runapi.runway_aleph import RunwayAlephClient
 from runapi.runway_aleph.resources.edit_video import EditVideo
 from runapi.runway_aleph.types import CompletedEditVideoResponse, EditVideoResponse
@@ -115,34 +115,6 @@ def test_run_polls_and_narrows_completed_type():
     assert isinstance(result, CompletedEditVideoResponse)
     assert result.videos[0].url == "https://x/y.mp4"
     assert [call[0] for call in fake.calls] == ["post", "get"]
-
-
-# --- validation -----------------------------------------------------------
-
-
-def test_create_requires_prompt():
-    client = RunwayAlephClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="prompt is required"):
-        client.edit_video.create(
-            model="runway-aleph", source_video_url="https://cdn.runapi.ai/public/samples/v.mp4"
-        )
-
-
-def test_create_requires_source_video_url():
-    client = RunwayAlephClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="source_video_url is required"):
-        client.edit_video.create(model="runway-aleph", prompt="hi")
-
-
-def test_create_rejects_invalid_aspect_ratio():
-    client = RunwayAlephClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="aspect_ratio must be one of"):
-        client.edit_video.create(
-            model="runway-aleph",
-            prompt="hi",
-            source_video_url="https://runapi.ai/v.mp4",
-            aspect_ratio="99:1",
-        )
 
 
 def test_create_accepts_valid_aspect_ratio():

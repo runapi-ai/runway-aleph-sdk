@@ -17,8 +17,8 @@ public final class EditVideoParams {
 
   private EditVideoParams(Builder builder) {
     this.model = builder.model;
-    this.prompt = RunwayalephParamUtils.requireNonBlank(builder.prompt, "prompt");
-    this.sourceVideoUrl = RunwayalephParamUtils.requireNonBlank(builder.sourceVideoUrl, "sourceVideoUrl");
+    this.prompt = builder.prompt;
+    this.sourceVideoUrl = builder.sourceVideoUrl;
     this.callbackUrl = builder.callbackUrl;
     this.watermark = builder.watermark;
     this.aspectRatio = builder.aspectRatio;
@@ -73,26 +73,26 @@ public final class EditVideoParams {
 
     /** Sets the model slug using a string value. */
     public Builder model(String value) {
-      this.model = RunwayalephParamUtils.requireNonBlankTrim(value, "model");
+      this.model = value;
       return this;
     }
 
 
     /** Sets the text prompt. */
     public Builder prompt(String value) {
-      this.prompt = RunwayalephParamUtils.requireNonBlank(value, "prompt");
+      this.prompt = value;
       return this;
     }
 
     /** Sets the source video URL. */
     public Builder sourceVideoUrl(String value) {
-      this.sourceVideoUrl = RunwayalephParamUtils.requireNonBlank(value, "sourceVideoUrl");
+      this.sourceVideoUrl = value;
       return this;
     }
 
     /** Sets the webhook URL for task completion notifications. */
     public Builder callbackUrl(String value) {
-      this.callbackUrl = RunwayalephParamUtils.requireNonBlank(value, "callbackUrl");
+      this.callbackUrl = value;
       return this;
     }
 
@@ -104,7 +104,7 @@ public final class EditVideoParams {
 
     /** Sets the output aspect ratio. */
     public Builder aspectRatio(String value) {
-      this.aspectRatio = RunwayalephParamUtils.requireNonBlank(value, "aspectRatio");
+      this.aspectRatio = value;
       return this;
     }
 
@@ -116,7 +116,7 @@ public final class EditVideoParams {
 
     /** Sets the reference image URL. */
     public Builder referenceImageUrl(String value) {
-      this.referenceImageUrl = RunwayalephParamUtils.requireNonBlank(value, "referenceImageUrl");
+      this.referenceImageUrl = value;
       return this;
     }
 

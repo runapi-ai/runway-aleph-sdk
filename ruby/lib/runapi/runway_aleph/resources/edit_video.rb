@@ -32,7 +32,6 @@ module RunApi
         # @return [RunApi::RunwayAleph::Types::TaskCreateResponse] task creation result with id
         def create(options: nil, **params)
           params = compact_params(params)
-          validate_contract!(CONTRACT["edit-video"], params.merge(model: MODEL))
           request(:post, ENDPOINT, body: params, options: options)
         end
 

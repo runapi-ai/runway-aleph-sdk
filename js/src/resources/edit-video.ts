@@ -1,13 +1,9 @@
-import type { HttpClient, PollingOptions, RequestOptions, ActionSchema } from '@runapi.ai/core';
-import { compactParams, validateParams } from '@runapi.ai/core';
+import type { HttpClient, PollingOptions, RequestOptions } from '@runapi.ai/core';
+import { compactParams } from '@runapi.ai/core';
 import { pollUntilComplete } from '@runapi.ai/core/internal';
-import { contract } from '../contract_gen';
 import type { CompletedEditVideoResponse, EditVideoParams, EditVideoResponse, TaskCreateResponse } from '../types';
 
 const ENDPOINT = '/api/v1/runway_aleph/edit_video';
-
-// Fixed endpoint model, injected only for contract validation (never sent on the wire).
-const MODEL = 'runway-aleph';
 
 /** Transform an existing video using a text prompt. Optionally provide a reference_image_url to guide the visual style of the transformation. */
 export class EditVideo {
@@ -36,7 +32,6 @@ export class EditVideo {
    */
   async create(params: EditVideoParams, options?: RequestOptions): Promise<TaskCreateResponse> {
     const body = compactParams(params);
-    validateParams(contract['edit-video'] as ActionSchema, { ...body, model: MODEL } as Record<string, unknown>);
     return this.http.request<TaskCreateResponse>('POST', ENDPOINT, { body, ...options });
   }
 
