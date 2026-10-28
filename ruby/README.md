@@ -1,8 +1,12 @@
 # Runway Aleph Ruby SDK for RunAPI
 
-The Runway Aleph Ruby SDK is the language-specific package for Runway Aleph on RunAPI. Use this package for video generation, animation, and video editing workflows when your application needs request bodies, task status lookup, and consistent RunAPI errors in Ruby.
+The Runway Aleph Ruby SDK is the language-specific package for Runway Aleph on RunAPI. Use this package to query historical video editing tasks and handle RunAPI errors in Ruby.
 
 This README is the Ruby package guide inside the public `runway-aleph-sdk` repository. For the repository overview, start at `../README.md`; for model details, use https://runapi.ai/models/runway-aleph; for API reference, use https://runapi.ai/docs/api/runway-aleph/edit-video; for SDK docs, use https://runapi.ai/docs/resources/sdks.
+
+## Retirement
+
+`runway-aleph` was retired on 2026-10-11. New `edit_video` requests return HTTP 410 before task creation or balance deduction. Existing task IDs remain queryable. This model ID is not mapped to another model.
 
 ## Install
 
@@ -10,7 +14,9 @@ This README is the Ruby package guide inside the public `runway-aleph-sdk` repos
 gem install runapi-runway-aleph
 ```
 
-## Quick start
+## Historical request reference
+
+The request examples below describe the retired API. Do not submit new tasks. Use `get` with an existing task ID to retrieve its status.
 
 ```ruby
 require "runapi/runway_aleph"
@@ -24,7 +30,7 @@ task = client.edit_video.create(
 status = client.edit_video.get(task.id)
 ```
 
-Use `create` when you want to submit a task and return quickly, `get` when you need the latest task state, and `run` when a script should create and poll until completion. In web request handlers, prefer `create` plus webhook or later `get` polling so a worker is not held open.
+Use the task-status lookup with an existing task ID. Task creation and submit-and-poll helpers return HTTP 410 for this retired model.
 
 RunAPI-generated file URLs are temporary. Download and store generated images, videos, audio, or other files in your own durable storage within 7 days; do not treat returned URLs as long-term assets.
 

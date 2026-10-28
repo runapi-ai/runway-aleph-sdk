@@ -21,9 +21,13 @@
 </div>
 <br/>
 
-Edit video with Runway Aleph prompt-guided transformations. This skill helps Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents integrate Runway Aleph through RunAPI.
+Query historical Runway Aleph video editing tasks. This skill helps Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents integrate Runway Aleph through RunAPI.
 
 The canonical agent file is `skills/runway-aleph/SKILL.md`.
+
+## Retirement
+
+`runway-aleph` was retired on 2026-10-11. New `edit_video` requests return HTTP 410 before task creation or balance deduction. Existing task IDs remain queryable. This model ID is not mapped to another model.
 
 ## Install
 
@@ -44,7 +48,9 @@ Install the runway-aleph skill for me:
 4. Confirm the install path when done.
 ```
 
-## Quick example
+## Historical request reference
+
+The request examples below describe the retired API. Do not submit new tasks. Use `get` with an existing task ID to retrieve its status.
 
 ```typescript
 import { RunwayAlephClient } from '@runapi.ai/runway-aleph';
@@ -73,7 +79,7 @@ const url = result.videos[0].url;
 - Integration work uses the target language SDK; one-off generation, manual smoke tests, debugging, or user-requested CLI runs use the RunAPI CLI skill: https://github.com/runapi-ai/cli-skill
 - RunAPI-generated file URLs are temporary. Download and store generated images, videos, audio, or other files in your own durable storage within 7 days; do not treat returned URLs as long-term assets.
 - Keep API keys in `RUNAPI_API_KEY` or RunAPI CLI config; never commit secrets.
-- Prefer `create`, `get`, and `run` JSON passthrough patterns instead of inventing flags for every model parameter.
+- Use `get` with an existing task ID. Do not submit new tasks with `create` or `run`.
 - For pricing, rate-limit, and commercial-usage answers, link to the model page rather than the repository README.
 
 ## License

@@ -10,7 +10,7 @@ Dir.chdir(__dir__) do
     spec.email = ["contact@runapi.ai"]
 
     spec.summary = "Runway Aleph Ruby SDK for RunAPI"
-    spec.description = "The Runway Aleph Ruby SDK is the language-specific package for Runway Aleph on RunAPI. Use this package for video generation, animation, and video editing workflows when your application needs request bodies, task status lookup, and consistent RunAPI errors in Ruby."
+    spec.description = "The Runway Aleph Ruby SDK is the language-specific package for Runway Aleph on RunAPI. Use this package to query historical video editing tasks and handle RunAPI errors in Ruby."
     spec.homepage = "https://runapi.ai/models/runway-aleph"
     spec.license = "Apache-2.0"
     spec.required_ruby_version = ">= 3.1.0"
@@ -25,6 +25,6 @@ Dir.chdir(__dir__) do
     spec.extra_rdoc_files = ["README.md"]
         spec.require_paths = ["lib"]
 
-    spec.add_dependency "runapi-core", "~> 0.6.0"
+    spec.add_dependency "runapi-core", "~> 0.6.1"
   end
 end

@@ -10,6 +10,10 @@ This README is the Java package guide inside the public `runway-aleph-sdk` repos
 
 The Java SDK targets Java 8 bytecode and is tested on Java 8, 11, 17, and 21.
 
+## Retirement
+
+`runway-aleph` was retired on 2026-10-11. New `edit_video` requests return HTTP 410 before task creation or balance deduction. Existing task IDs remain queryable. This model ID is not mapped to another model.
+
 ## Install
 
 Gradle:
@@ -34,7 +38,7 @@ Use the BOM when multiple RunAPI Java modules are installed:
 
 ```kotlin
 dependencies {
-  implementation(platform("ai.runapi:runapi-bom:0.9.0"))
+  implementation(platform("ai.runapi:runapi-bom:0.10.0"))
   implementation("ai.runapi:runapi-runway-aleph")
 }
 ```
@@ -47,7 +51,7 @@ Maven BOM:
     <dependency>
       <groupId>ai.runapi</groupId>
       <artifactId>runapi-bom</artifactId>
-      <version>0.9.0</version>
+      <version>0.10.0</version>
       <type>pom</type>
       <scope>import</scope>
     </dependency>
@@ -55,7 +59,9 @@ Maven BOM:
 </dependencyManagement>
 ```
 
-## Quick Start
+## Historical request reference
+
+The request examples below describe the retired API. Do not submit new tasks. Use `get` with an existing task ID to retrieve its status.
 
 ```java
 import ai.runapi.runwayaleph.RunwayAlephClient;
@@ -79,9 +85,9 @@ CompletedEditVideoResponse result = client.editVideo().run(
 
 The client builder reads `RUNAPI_API_KEY` when `.apiKey(...)` is omitted. Set `RUNAPI_BASE_URL` or `.baseUrl(...)` only when using a non-default RunAPI endpoint.
 
-## Task Lifecycle
+## Historical task lookup
 
-Most media endpoints are asynchronous. `create(params)` submits a task and returns its id, `get(id)` fetches the latest task state, and `run(params)` creates the task and polls until it reaches a terminal state. Synchronous resources expose `run(params)` only.
+Use the task-status lookup with an existing task ID. Task creation and submit-and-poll helpers return HTTP 410 for this retired model.
 
 ```java
 import ai.runapi.core.polling.TaskCreateResponse;

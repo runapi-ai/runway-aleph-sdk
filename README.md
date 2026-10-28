@@ -22,9 +22,13 @@
 </div>
 <br/>
 
-The Runway Aleph API SDK packages JavaScript, Python, Ruby, Go, Java, and PHP clients for Runway Aleph on RunAPI. Use it for prompt-guided video editing workflows when your app needs typed request builders, predictable task polling, file upload helpers, account helpers, and consistent RunAPI errors.
+The Runway Aleph API SDK packages JavaScript, Python, Ruby, Go, Java, and PHP clients for Runway Aleph on RunAPI. Use it to query historical video editing tasks and handle RunAPI errors.
 
 Runway Aleph is listed in the RunAPI model catalog at https://runapi.ai/models/runway-aleph. Variant pages below carry pricing, rate-limit, and commercial-usage details. The public `runway-aleph-sdk` repository groups the non-PHP language packages, examples, CI, and release tags for this model. The PHP package is released from a split Composer repository.
+
+## Retirement
+
+`runway-aleph` was retired on 2026-10-11. New `edit_video` requests return HTTP 410 before task creation or balance deduction. Existing task IDs remain queryable. This model ID is not mapped to another model.
 
 ## Install
 
@@ -57,7 +61,7 @@ Use the Java BOM when installing multiple RunAPI Java modules:
 
 ```kotlin
 dependencies {
-  implementation(platform("ai.runapi:runapi-bom:0.9.0"))
+  implementation(platform("ai.runapi:runapi-bom:0.10.0"))
   implementation("ai.runapi:runapi-runway-aleph")
 }
 ```
@@ -66,13 +70,15 @@ The PHP package is published from the split Composer repository as `runapi-ai/ru
 
 ## What you can build
 
-- Build apps, agent workflows, batch jobs, and production services around Runway Aleph requests.
+- Query historical Runway Aleph tasks from an application or worker.
 - Install only the language package your app needs while keeping one model-specific repository for docs and releases.
-- Use `create` for submit-only jobs, `get` for status lookup, and `run` for submit-and-poll scripts.
+- Use `get` for status lookup with an existing task ID.
 - Upload local files, URL files, or base64 files through shared RunAPI file helpers.
 - Handle validation, authentication, rate limits, insufficient credits, task failures, and polling timeouts through RunAPI SDK errors.
 
-## Java quick start
+## Historical Java request reference
+
+The example below describes the retired API. Do not submit new tasks. Use `get` with an existing task ID.
 
 ```java
 import ai.runapi.runwayaleph.RunwayAlephClient;
@@ -98,7 +104,7 @@ Java packages target Java 8 bytecode and are tested on Java 8, 11, 17, and 21. E
 
 ## Task lifecycle
 
-Most media endpoints are asynchronous. `create()` submits a task and returns its id, `get(id)` fetches the latest task state, and `run(params)` creates the task and polls until it reaches a terminal state. In web request handlers, prefer `create()` plus webhook or later `get()` polling so the server does not hold a worker open.
+Use the task-status lookup with an existing task ID. Task creation and submit-and-poll helpers return HTTP 410 for this retired model.
 
 ## Repository layout
 
